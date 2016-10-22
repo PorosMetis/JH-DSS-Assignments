@@ -29,9 +29,6 @@ cacheSolve <- function(x, ...) {
   mat_inv <- solve(mat_data, ...)
   x$create_inv(mat_inv)
   mat_inv
-
-  ## Make inverse matrix persistent to confirm result
-  pers_mat_inv <<- mat_inv
 }
 
 ## Run script with a 3 X 3 matrix 
@@ -41,17 +38,9 @@ cacheSolve(m3_inv)
 cacheSolve(m3_inv)
 cacheSolve(m3_inv)
 
-## Confirm result with a matrix and inverse multiplication 
-id3 <- mat_3 %*% pers_mat_inv
-id3
-
-## Run script with a 3 X 3 matrix 
+## Run script with a 4 X 4 matrix 
 mat_4 <- matrix(c(2, 5, 3, 2, 6, 1, 4, 3, 3, 4, 2, 4, 5, 3, 2, 6), nrow = 4, ncol = 4, byrow = TRUE)
 m4_inv <- makeCacheMatrix(mat_4)
 cacheSolve(m4_inv)
 cacheSolve(m4_inv)
 cacheSolve(m4_inv)
-
-## Confirm result with a matrix and inverse multiplication
-id4 <- mat_4 %*% pers_mat_inv
-id4
